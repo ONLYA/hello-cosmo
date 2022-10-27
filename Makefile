@@ -1,9 +1,9 @@
 CC=gcc
 OBJCOPY=objcopy
-BASEURL=https://worker.jart.workers.dev
-AMALGAMATION=cosmopolitan-amalgamation-2.0.zip
+BASEURL=https://justine.lol/cosmopolitan
+AMALGAMATION=cosmopolitan-amalgamation-2.1.1.zip
 LIBCOSMO_SHA256_EXPECTED=\
-2228cd5924c001b2d8c8efcc9ddacaab354ba4c99a3e0c8858098e2c3f2e3fdb
+b36781c7cd6763402c085f29e31ab53f5df4c066dbdde83c808dea978757115a
 
 hello.com: libcosmo hello.c
 	$(CC) -g -Os -static -fno-pie -no-pie -nostdlib -nostdinc                  \
@@ -11,7 +11,7 @@ hello.com: libcosmo hello.c
 		hello.com.dbg hello.c -Wl,--gc-sections -fuse-ld=bfd -Wl,--gc-sections \
 		-Wl,-T,libcosmo/ape.lds -include libcosmo/cosmopolitan.h         \
 		libcosmo/crt.o libcosmo/ape-no-modify-self.o                     \
-		libcosmo/cosmopolitan.a
+		libcosmo/cosmopolitan.a -Iinclude_stub/
 	$(OBJCOPY) -S -O binary hello.com.dbg hello.com
 
 libcosmo: $(AMALGAMATION)
