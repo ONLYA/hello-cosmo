@@ -5,13 +5,15 @@ AMALGAMATION=cosmopolitan-amalgamation-2.1.1.zip
 LIBCOSMO_SHA256_EXPECTED=\
 b36781c7cd6763402c085f29e31ab53f5df4c066dbdde83c808dea978757115a
 
+CFLAG :=
+
 hello.com: libcosmo hello.c
 	$(CC) -g -Os -static -fno-pie -no-pie -nostdlib -nostdinc                  \
 		-fno-omit-frame-pointer -pg -mnop-mcount -mno-tls-direct-seg-refs -o   \
-		hello.com.dbg hello.c -Wl,--gc-sections -fuse-ld=bfd -Wl,--gc-sections \
+		hello.com.dbg *.c -Wl,--gc-sections -fuse-ld=bfd -Wl,--gc-sections \
 		-Wl,-T,libcosmo/ape.lds -include libcosmo/cosmopolitan.h         \
 		libcosmo/crt.o libcosmo/ape-no-modify-self.o                     \
-		libcosmo/cosmopolitan.a -Iinclude_stub/
+		libcosmo/cosmopolitan.a -Iinclude_stub/ $(CFLAG)
 	$(OBJCOPY) -S -O binary hello.com.dbg hello.com
 
 libcosmo: $(AMALGAMATION)
