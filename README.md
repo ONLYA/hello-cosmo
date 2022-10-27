@@ -2,6 +2,8 @@
 
 A makefile project to demonstrate building a portable Hello World executable with [Cosmopolitan Libc](https://github.com/jart/cosmopolitan)
 
+There is a great blog from [Getting Started with Cosmopolitan Libc | Jon Eskin's Website](https://web.archive.org/web/20221027125525/https://jeskin.net/blog/getting-started-with-cosmopolitan-libc/).
+
 # Building
 
 ## Linux
@@ -22,9 +24,17 @@ $ make CC=x86_64-elf-gcc OBJCOPY=x86_64-elf-objcopy
 See https://justine.lol/cosmopolitan/windows-compiling.html
 
 # Running
+## Linux Or MacOS Or Powershell
 
 ```bash
-$ ./hello.com
+$ ./hello.com # Linux bash Or MacOS Or Powershell
+```
+
+## Windows CMD
+
+```cmd
+C:\> REM Windows cmd
+C:\> hello.com
 ```
 
 ## Note: Running with ZSH
